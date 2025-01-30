@@ -5347,7 +5347,7 @@ entries:
           url: https://github.com/gabrieladt
       name: node-local-dns
       urls:
-        - oci://ghcr.io/deliveryhero/helm-charts/node-local-dns:2.1.4
+        - https://github.com/sanjaykkr/helm-charts/releases/download/node-local-dns-2.1.4/node-local-dns-2.1.4.tgz
       version: 2.1.4
     - apiVersion: v2
       appVersion: 1.23.1
