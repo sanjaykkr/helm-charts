@@ -22,6 +22,7 @@ data:
         log
     {{- end }}
         errors
+    {{- if .Values.config.cache.enabled }}
         cache {
                 success 9984 30
                 denial 9984 5
@@ -29,6 +30,7 @@ data:
                 prefetch {{ .Values.config.prefetch.amount }} {{ .Values.config.prefetch.duration }} {{ .Values.config.prefetch.percentage }}
             {{- end }}
         }
+    {{- end }}
         reload
         loop
     {{- if .Values.config.bindIp }}
@@ -49,12 +51,14 @@ data:
         }
     in-addr.arpa:53 {
         errors
+    {{- if .Values.config.cache.enabled }}
     {{- if .Values.config.prefetch.enabled}}
         cache 30 {
                 prefetch {{ .Values.config.prefetch.amount }} {{ .Values.config.prefetch.duration }} {{ .Values.config.prefetch.percentage }}
         }
     {{- else }}
         cache 30
+    {{- end }}
     {{- end }}
         reload
         loop
@@ -75,12 +79,14 @@ data:
         }
     ip6.arpa:53 {
         errors
+    {{- if .Values.config.cache.enabled }}
     {{- if .Values.config.prefetch.enabled}}
         cache 30 {
                 prefetch {{ .Values.config.prefetch.amount }} {{ .Values.config.prefetch.duration }} {{ .Values.config.prefetch.percentage }}
         }
     {{- else }}
         cache 30
+    {{- end }}
     {{- end }}
         reload
         loop
@@ -104,12 +110,14 @@ data:
         log
     {{- end }}
         errors
+    {{- if .Values.config.cache.enabled }}
     {{- if .Values.config.prefetch.enabled}}
         cache 30 {
                 prefetch {{ .Values.config.prefetch.amount }} {{ .Values.config.prefetch.duration }} {{ .Values.config.prefetch.percentage }}
         }
     {{- else }}
         cache 30
+    {{- end }}
     {{- end }}
         reload
         loop
