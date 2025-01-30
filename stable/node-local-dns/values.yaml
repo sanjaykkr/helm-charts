@@ -30,7 +30,7 @@ config:
 
   # -- If enabled, coredns will cache the items
   cache:
-    enabled: false
+    enabled: true
 
   # -- If enabled, coredns will prefetch popular items when they are about to be expunged from the cache. https://coredns.io/plugins/cache/
   prefetch:
