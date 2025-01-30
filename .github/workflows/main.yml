@@ -8,11 +8,12 @@ on:
 jobs:
   release:
     permissions:
-      contents: write
+      contents: write # to push chart release and create a release (helm/chart-releaser-action)
+
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -21,10 +22,12 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
-      - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.6.0
+      - name: Set up Helm
+        uses: azure/setup-helm@v3.5
         with:
-          charts_dir: stable
-          install_dir: .cr-index
+          version: v3.9.2
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.5.0
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_TOKEN: "${{ secrets.HELM_RELEASE_TOKEN }}"
