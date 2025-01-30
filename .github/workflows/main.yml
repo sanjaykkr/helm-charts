@@ -34,3 +34,12 @@ jobs:
           pages_branch: master
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Commit Changes
+        run: |
+          git add .cr-index/index.yaml
+          git commit -m "Update Helm repo index [skip ci]"
+          git push origin master
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
